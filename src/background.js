@@ -6,6 +6,7 @@ import {
   /* installVueDevtools */
 } from 'vue-cli-plugin-electron-builder/lib'
 import db from './database/database'
+
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will

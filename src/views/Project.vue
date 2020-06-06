@@ -5,13 +5,14 @@
 </template>
 
 <script>
-
 export default {
   methods: {
     getProjectList() {
+      this.$ipcRenderer.send('getProjectList');
     }
   },
   mounted() {
+    this.getProjectList();
   }
 }
 </script>
