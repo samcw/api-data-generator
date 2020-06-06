@@ -45,7 +45,7 @@ export default {
   name: 'Home',
   data() {
     return {
-      drawer: true
+      drawer: true,
     }
   },
   methods: {

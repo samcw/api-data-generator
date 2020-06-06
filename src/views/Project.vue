@@ -68,6 +68,9 @@ export default {
   },
   mounted() {
     this.getProjectList();
+    // if (this.projectList.length !== 0) {
+
+    // }
   }
 }
 </script>
