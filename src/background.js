@@ -5,6 +5,7 @@ import {
   createProtocol,
   /* installVueDevtools */
 } from 'vue-cli-plugin-electron-builder/lib'
+import db from './database/database'
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -16,7 +17,7 @@ protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: { secure: true
 
 function createWindow () {
   // Create the browser window.
-  win = new BrowserWindow({ width: 800, height: 600, webPreferences: {
+  win = new BrowserWindow({ width: 1000, height: 600, webPreferences: {
     // Use pluginOptions.nodeIntegration, leave this alone
     // See nklayman.github.io/vue-cli-plugin-electron-builder/guide/security.html#node-integration for more info
     nodeIntegration: process.env.ELECTRON_NODE_INTEGRATION
@@ -89,3 +90,6 @@ if (isDevelopment) {
     })
   }
 }
+
+//数据库操作
+console.log(db.has('projectList').value());

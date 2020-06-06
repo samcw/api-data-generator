@@ -2,6 +2,7 @@
   "name": "web-data-generator",
   "version": "0.1.0",
   "private": true,
+  "appId": "com.samchow.api-data-gengerator",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -14,6 +15,8 @@
   "main": "background.js",
   "dependencies": {
     "core-js": "^3.6.5",
+    "lodash-id": "^0.14.0",
+    "lowdb": "^1.0.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.2.11"
