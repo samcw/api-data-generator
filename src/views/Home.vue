@@ -21,28 +21,20 @@
 
         <v-divider></v-divider>
 
-        <v-list-item link @click="jump('Project')">
-          <!-- <v-list-item-icon>
-            <v-icon>mdi-account-box-outline</v-icon>
-          </v-list-item-icon> -->
-
-          <v-list-item-content class="pl-2">
-            <v-list-item-title>项目</v-list-item-title>
+        <v-list-item link :to="{name: 'Project'}">
+          <v-list-item-content class="pl-1">
+            <v-list-item-title>项目<span class="ml-4 text--disabled">Project</span></v-list-item-title>
           </v-list-item-content>
-        </v-list-item> 
+        </v-list-item>
 
-        <v-list-item link @click="jump('About')">
-          <!-- <v-list-item-icon>
-            <v-icon>mdi-alert-circle-outline</v-icon>
-          </v-list-item-icon> -->
-
-          <v-list-item-content class="pl-2">
-            <v-list-item-title>关于</v-list-item-title>
+        <v-list-item link :to="{name: 'About'}">
+          <v-list-item-content class="pl-1">
+            <v-list-item-title>关于<span class="ml-4 text--disabled">About</span></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <div>
+    <div class="home-right-side">
       <router-view></router-view>
     </div>
   </div>
@@ -57,10 +49,6 @@ export default {
     }
   },
   methods: {
-    jump(target) {
-      if (!target || this.$route.name === target) return;
-      this.$router.push({name: target});
-    }
   }
 }
 </script>
@@ -72,6 +60,9 @@ export default {
     flex-direction: row;
   }
   hr {
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+  }
+  .home-right-side {
+    width: 100%;
   }
 </style>

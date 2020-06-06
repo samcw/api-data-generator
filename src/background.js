@@ -1,11 +1,11 @@
 'use strict'
 
-import { app, protocol, BrowserWindow } from 'electron'
+import { app, protocol, BrowserWindow, ipcMain } from 'electron'
 import {
   createProtocol,
   /* installVueDevtools */
 } from 'vue-cli-plugin-electron-builder/lib'
-import db from './database/database'
+import projectController from './controller/index';
 
 const isDevelopment = process.env.NODE_ENV !== 'production'
 
@@ -92,5 +92,6 @@ if (isDevelopment) {
   }
 }
 
-//数据库操作
-console.log(db.has('projectList').value());
+//事件处理
+ipcMain.on('getProjectList-message', projectController.getProjectList);
+ipcMain.on('addProject', projectController.addProject);

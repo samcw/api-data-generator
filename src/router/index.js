@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Project from '../views/Project.vue'
+import AddProject from '../views/AddProject'
 
 Vue.use(VueRouter)
 
@@ -23,7 +24,14 @@ Vue.use(VueRouter)
       {
         path: 'project',
         name: 'Project',
-        component: Project
+        component: Project,
+        children: [
+          {
+            path: 'addProject',
+            name: 'AddProject',
+            component: AddProject
+          }
+        ]
       }
     ]
   },
