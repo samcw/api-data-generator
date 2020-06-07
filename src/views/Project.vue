@@ -1,16 +1,20 @@
 <template>
   <div class="project">
     <v-list dense width="150" class="project-list">
-      <v-subheader class="title">
+      <v-subheader class="title mb-2">
         <span style="font-size: 0.875rem" class="pl-1">PROJECT</span>
         <v-btn icon color="grey" x-small @click="onClickAddProject">
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </v-subheader>
+      <v-divider></v-divider>
       <v-list-item-group color="primary">
         <v-list-item
           v-for="(item, i) in projectList"
-          :key="i">
+          :key="i"
+          link
+          @click="onClickJump(item.id)"
+          >
           <v-list-item-content>
             <v-list-item-title>{{item.projectName}}</v-list-item-title>
           </v-list-item-content>
@@ -19,9 +23,11 @@
       <p v-if="projectList.length === 0" class="tip">请添加项目</p>
     </v-list>
     <div class="project-right">
-      <router-view></router-view>
+      <router-view :key="key"></router-view>
     </div>
     <v-snackbar
+      top
+      :timeout="2000"
       v-model="projectBar.status"
     >
       {{ projectBar.text }}
@@ -48,29 +54,50 @@ export default {
       }
     }
   },
+  computed: {
+    key() {
+      return this.$route.name !== undefined? this.$route.name +new Date().getTime(): this.$route +new Date().getTime();
+    }
+  },
   methods: {
     getProjectList() {
-      this.projectList = this.$ipcRenderer.sendSync('getProjectList-message');
+      this.projectList = this.$ipcRenderer.sendSync('getProjectList');
     },
     onClickAddProject() {
+      if (this.$route.name === 'AddProject') return;
       this.$router.push({name: 'AddProject'});
+    },
+    onClickJump(id) {
+      if (this.$route.name === 'ProjectDetail' && this.$route.query.id === id) return;
+      this.$router.push({
+        name: 'ProjectDetail',
+        query: { id: id }
+      })
     },
     setProjectBar(text) {
       this.projectBar.status = true;
       this.projectBar.text = text;
     },
+    jump() {
+      this.$router.push({
+        name: 'ProjectDetail',
+        query: { id: this.projectList[0].id }
+      })
+    }
   },
   provide() {
     return {
       setProjectBar: this.setProjectBar,
-      getProjectList: this.getProjectList
+      getProjectList: this.getProjectList,
+      jump: this.jump
     }
   },
   mounted() {
     this.getProjectList();
-    // if (this.projectList.length !== 0) {
-
-    // }
+    if (this.projectList.length !== 0) {
+      if (this.$route.name === 'ProjectDetail') return;
+      this.jump();
+    }
   }
 }
 </script>

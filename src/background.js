@@ -93,5 +93,6 @@ if (isDevelopment) {
 }
 
 //事件处理
-ipcMain.on('getProjectList-message', projectController.getProjectList);
+ipcMain.on('getProjectList', projectController.getProjectList);
 ipcMain.on('addProject', projectController.addProject);
+ipcMain.on('getProjectDetail', projectController.getProjectDetail);

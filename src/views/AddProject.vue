@@ -1,7 +1,7 @@
 <template>
   <div class="addProject">
-    <div class="title pl-10 pt-3">
-      <p class="text--secondary">New Project</p>
+    <div class="title pl-10 pt-4">
+      <div class="text--secondary">New Project</div>
     </div>
     <div class="line"></div>
     <div class="form">
@@ -81,7 +81,7 @@ export default {
       }
     }
   },
-  inject: ['setProjectBar', 'getProjectList'],
+  inject: ['setProjectBar', 'getProjectList', 'jump'],
   methods: {
     onClickAddSubmit() {
       let data = Object.assign({
@@ -93,6 +93,7 @@ export default {
       } else if (status === 200) {
         this.setProjectBar('Success!');
         this.getProjectList();
+        this.jump();
       }
     }
   }

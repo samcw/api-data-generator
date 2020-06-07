@@ -4,6 +4,12 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Project from '../views/Project.vue'
 import AddProject from '../views/AddProject'
+import ProjectDetail from '../views/ProjectDetail'
+
+// const originalPush = VueRouter.prototype.push
+//    VueRouter.prototype.push = function push(location) {
+//    return originalPush.call(this, location).catch(err => err)
+// }
 
 Vue.use(VueRouter)
 
@@ -30,6 +36,11 @@ Vue.use(VueRouter)
             path: 'addProject',
             name: 'AddProject',
             component: AddProject
+          },
+          {
+            path: 'projectDetail',
+            name: 'ProjectDetail',
+            component: ProjectDetail
           }
         ]
       }
