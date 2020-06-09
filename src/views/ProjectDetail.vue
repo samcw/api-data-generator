@@ -14,7 +14,7 @@
     <div class="form">
       <v-container>
         <p>
-          <v-btn x-small depressed>NEW ITEM</v-btn>
+          <v-btn x-small depressed @click="onClickNewItem">NEW ITEM</v-btn>
         </p>
         <v-data-table
           v-model="selected"
@@ -57,6 +57,14 @@ export default {
     getProjectDetail() {
       this.projectDetail = this.$ipcRenderer.sendSync('getProjectDetail', this.$route.query.id);
       console.log(this.projectDetail);
+    },
+    onClickNewItem() {
+      this.$router.push({
+        name: 'AddItem',
+        query: {
+          id: this.projectDetail.id
+        }
+      })
     }
   },
   mounted() {
@@ -77,6 +85,7 @@ export default {
     height: 1px;
     width: 90%;
     background-color: #dfdfdf;
+    margin-top: 5px;
   }
   .title {
     width: 100%;
