@@ -14,7 +14,7 @@
     <div class="form">
       <v-container>
         <p>
-          <v-btn x-small depressed @click="onClickNewItem">NEW ITEM</v-btn>
+          <v-btn x-small depressed @click="onClickNewItem">NEW API</v-btn>
         </p>
         <v-data-table
           v-model="selected"

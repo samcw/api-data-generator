@@ -1,13 +1,13 @@
 <template>
   <div class="project">
     <v-list dense width="150" class="project-list">
-      <v-subheader class="title mb-2">
+      <v-subheader class="title mb-1">
         <span style="font-size: 0.875rem" class="pl-1">PROJECT</span>
         <v-btn icon color="grey" x-small @click="onClickAddProject">
           <v-icon>mdi-plus</v-icon>
         </v-btn>
       </v-subheader>
-      <v-divider></v-divider>
+      <v-divider class="mb-1"></v-divider>
       <v-list-item-group color="primary">
         <v-list-item
           v-for="(item, i) in projectList"

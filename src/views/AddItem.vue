@@ -41,6 +41,10 @@
           <label class="body-1 font-weight-bold">Request Body</label>
           <CodeMirror refName="request"></CodeMirror>
         </div>
+        <div>
+          <label class="body-1 font-weight-bold">Response Body</label>
+          <CodeMirror refName="response"></CodeMirror>
+        </div>
       </v-container>
     </div>
   </div>

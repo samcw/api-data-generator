@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <v-container>
-      <textarea
-        ref="test"
-      ></textarea>
-    </v-container>
+  <div class="mt-3 mb-3">
+    <textarea
+      :ref="refName"
+    ></textarea>
   </div>
 
 </template>
@@ -12,6 +10,8 @@
 <script>
 import "codemirror/lib/codemirror.css";
 import "codemirror/addon/hint/show-hint.css";
+import "codemirror/addon/lint/lint.css";
+import "codemirror/theme/eclipse.css"
 
 let CodeMirror = require("codemirror/lib/codemirror");
 require("codemirror/addon/edit/matchbrackets");
@@ -20,6 +20,8 @@ require("codemirror/addon/selection/active-line");
 require("codemirror/addon/hint/show-hint");
 require("codemirror/addon/hint/anyword-hint");
 require("codemirror/mode/javascript/javascript")
+require("codemirror/addon/lint/lint")
+require("codemirror/addon/lint/json-lint")
 
 // const mockHint = [
 //   '@address',
@@ -32,12 +34,12 @@ export default {
       CodeMirror: {}
     }
   },
-  // props: {
-  //   refName: String
-  // },
+  props: {
+    refName: String
+  },
   methods: {
     init() {
-      let editor = CodeMirror.fromTextArea(this.$refs.test, {
+      let editor = CodeMirror.fromTextArea(this.$refs[this.refName], {
         mode: 'application/json',
         lineNumbers: true,
         indentWithTabs: true,
@@ -45,12 +47,14 @@ export default {
         indentUnit: 2,
         lineWrapping: true,
         matchBrackets: true,
-        autoCloseBrackets: true
+        autoCloseBrackets: true,
+        lint: true,
+        theme: 'eclipse'
       })
       CodeMirror.commands.autocomplete = function(cm) {
         cm.showHint({hint: CodeMirror.hint.anyword});
       };
-      editor.setSize('100%', '400px')
+      editor.setSize('100%', '300px')
     }
   },
   mounted() {
@@ -61,6 +65,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+  .CodeMirror {
+    font-size: 13px;
+  }
 </style>

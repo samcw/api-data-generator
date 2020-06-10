@@ -16,6 +16,7 @@
   "dependencies": {
     "codemirror": "^5.54.0",
     "core-js": "^3.6.5",
+    "jsonlint": "^1.6.3",
     "lodash-id": "^0.14.0",
     "lowdb": "^1.0.0",
     "vue": "^2.6.11",

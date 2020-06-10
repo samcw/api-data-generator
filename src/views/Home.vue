@@ -5,7 +5,6 @@
     :permanent="true"
     >
       <v-list
-        nav
         dense
       >
         <v-list-item two-line>
