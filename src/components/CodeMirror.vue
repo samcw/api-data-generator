@@ -4,7 +4,6 @@
       :ref="refName"
     ></textarea>
   </div>
-
 </template>
 
 <script>
@@ -22,11 +21,6 @@ require("codemirror/addon/hint/anyword-hint");
 require("codemirror/mode/javascript/javascript")
 require("codemirror/addon/lint/lint")
 require("codemirror/addon/lint/json-lint")
-
-// const mockHint = [
-//   '@address',
-//   '@id'
-// ]
 
 export default {
   data() {
@@ -54,7 +48,14 @@ export default {
       CodeMirror.commands.autocomplete = function(cm) {
         cm.showHint({hint: CodeMirror.hint.anyword});
       };
-      editor.setSize('100%', '300px')
+      editor.setSize('100%', '300px');
+      editor.setValue('{}')
+      editor.on('blur', () => {
+        this.$emit('handleJsonData', {
+          from: this.refName,
+          data: editor.getValue()
+        });
+      });
     }
   },
   mounted() {
