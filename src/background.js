@@ -96,3 +96,4 @@ if (isDevelopment) {
 ipcMain.on('getProjectList', projectController.getProjectList);
 ipcMain.on('addProject', projectController.addProject);
 ipcMain.on('getProjectDetail', projectController.getProjectDetail);
+ipcMain.on('addNewProjectItem', projectController.addNewProjectItem);

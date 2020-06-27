@@ -49,7 +49,7 @@
             <CodeMirror refName="response" @handleJsonData="handleJsonData"></CodeMirror>
           </div>
           <div class="submit mt-4">
-            <v-btn small :disabled="!valid">submit</v-btn>
+            <v-btn small :disabled="!valid" @click="onClickSubmit">submit</v-btn>
           </div>
         </v-container>
       </v-form>
@@ -66,8 +66,8 @@ export default {
       addForm: {
         name: '',
         method: '',
-        request: {},
-        response: {}
+        request: null,
+        response: null
       },
       methods: ['GET', 'POST'],
       projectId: '',
@@ -100,8 +100,16 @@ export default {
       } catch (error) {
         data = null;
       }
-      this.addForm[e.from] = JSON.stringify(data);
+      this.addForm[e.from] = data ? JSON.stringify(data) : null;
       console.log(this.addForm);
+    },
+    //handle submit event
+    onClickSubmit() {
+      const item = {
+        projectId: this.projectId,
+        ...this.addForm
+      }
+      this.$ipcRenderer.sendSync('addNewProjectItem', item);
     }
   },
   mounted() {

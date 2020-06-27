@@ -29,5 +29,13 @@ projectController.getProjectDetail = (event, arg) => {
     event.returnValue = 500;
   }
 }
+projectController.addNewProjectItem = (event, arg) => {
+  arg.request = arg.request ? arg.request : {};
+  arg.response = arg.response ? arg.response : {};
+  const parameterList = db.get('projectList')
+  .find({id: arg.projectId})
+  .value();
+  console.log(arg, parameterList);
+}
 
 export default projectController;
