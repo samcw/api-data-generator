@@ -14,7 +14,7 @@
   },
   "main": "background.js",
   "dependencies": {
-    "codemirror": "^5.54.0",
+    "codemirror": "^5.58.2",
     "core-js": "^3.6.5",
     "jsonlint": "^1.6.3",
     "lodash-id": "^0.14.0",
